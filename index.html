@@ -3,108 +3,116 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checklist Mantenimiento Condominio — Enviar a WhatsApp</title>
+  <title>Piedra Angular — Checklist de Mantenimiento</title>
   <style>
     :root {
-      --bg: #f4f6f9;
+      --bg: #f3f5f7;
       --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --primary: #0f766e;
-      --primary-hover: #115e59;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --brand: #1e3a5f;
+      --brand-dark: #142740;
       --wa: #16a34a;
       --wa-hover: #15803d;
-      --accent-bg: #f0fdfa;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.45;
-      padding-bottom: 96px;
+      padding-bottom: 100px;
     }
 
     header {
-      background: var(--primary);
+      background: var(--brand);
       color: #fff;
-      padding: 20px 16px;
+      padding: 16px;
       position: sticky;
       top: 0;
       z-index: 10;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
     }
 
-    header .wrap {
-      max-width: 920px;
+    .header-inner {
+      max-width: 820px;
       margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand-box {
+      display: flex;
       align-items: center;
       gap: 12px;
     }
 
+    .logo-svg {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      background: #fff;
+      border-radius: 10px;
+      padding: 5px;
+    }
+
     header h1 {
       margin: 0;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
+      letter-spacing: 0.3px;
     }
 
     header p {
       margin: 2px 0 0;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       opacity: 0.9;
     }
 
     .container {
-      max-width: 920px;
-      margin: 20px auto;
-      padding: 0 16px;
+      max-width: 820px;
+      margin: 18px auto;
+      padding: 0 14px;
     }
 
     .card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      padding: 16px;
+      margin-bottom: 14px;
     }
 
     .card h2 {
-      margin: 0 0 14px;
-      font-size: 1.05rem;
-      color: var(--primary);
+      margin: 0 0 12px;
+      font-size: 1rem;
+      color: var(--brand);
       border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
+      padding-bottom: 6px;
     }
 
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
+      gap: 10px;
     }
 
-    label.field {
+    label {
       display: flex;
       flex-direction: column;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 600;
       gap: 4px;
     }
 
-    input[type="text"],
-    input[type="date"],
-    input[type="number"],
-    textarea {
+    input, select {
       width: 100%;
-      padding: 9px 11px;
+      padding: 8px 10px;
       border: 1px solid #cbd5e1;
       border-radius: 8px;
       font-size: 0.9rem;
@@ -112,121 +120,62 @@
       background: #fff;
     }
 
-    input:focus,
-    textarea:focus {
-      outline: 2px solid #99f6e4;
-      border-color: var(--primary);
-    }
-
-    .item-row {
+    .service-item {
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 12px;
-      margin-bottom: 10px;
-      background: #fafafa;
-    }
-
-    .item-top {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
+      padding: 10px 12px;
       margin-bottom: 8px;
+      background: #fafbfc;
     }
 
-    .item-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      flex: 1 1 280px;
-    }
-
-    .status-group {
+    .service-head {
       display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 10px;
     }
 
-    .status-btn {
-      border: 1px solid #cbd5e1;
-      background: #fff;
-      color: var(--text);
-      padding: 5px 10px;
-      border-radius: 6px;
-      font-size: 0.78rem;
-      font-weight: 700;
+    .service-head input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: var(--brand);
       cursor: pointer;
     }
 
-    .status-btn.active[data-status="OK"] {
-      background: #dcfce7;
-      border-color: #16a34a;
-      color: #166534;
+    .service-title {
+      font-weight: 700;
+      font-size: 0.92rem;
     }
 
-    .status-btn.active[data-status="PRE"] {
-      background: #fef9c3;
-      border-color: #ca8a04;
-      color: #854d0e;
+    .service-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2px;
     }
 
-    .status-btn.active[data-status="COR"] {
-      background: #fee2e2;
-      border-color: #dc2626;
-      color: #991b1b;
-    }
-
-    .status-btn.active[data-status="N/A"] {
-      background: #e5e7eb;
-      border-color: #6b7280;
-      color: #374151;
-    }
-
-    .cotiza-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr auto;
-      gap: 8px;
-      margin-bottom: 8px;
-      align-items: center;
-    }
-
-    @media (max-width: 640px) {
-      .cotiza-grid {
-        grid-template-columns: 1fr;
-      }
+    .service-note {
+      margin-top: 8px;
+      padding-left: 28px;
     }
 
     .btn {
       border: none;
       border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 0.9rem;
+      padding: 9px 14px;
+      font-size: 0.88rem;
       font-weight: 600;
       cursor: pointer;
     }
 
-    .btn-secondary {
-      background: var(--accent-bg);
-      color: var(--primary);
-      border: 1px solid #99f6e4;
+    .btn-light {
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
     }
 
-    .btn-secondary:hover {
-      background: #ccfbf1;
-    }
-
-    .btn-danger {
-      background: #fee2e2;
-      color: #991b1b;
-      padding: 8px 10px;
-    }
-
-    .total-box {
-      text-align: right;
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-top: 8px;
-      color: var(--primary);
+    .btn-light:hover {
+      background: rgba(255, 255, 255, 0.25);
     }
 
     .footer-bar {
@@ -234,342 +183,367 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: #ffffff;
+      background: #fff;
       border-top: 1px solid var(--border);
-      padding: 12px 16px;
+      padding: 12px 14px;
       box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
       z-index: 20;
     }
 
-    .footer-bar .wrap {
-      max-width: 920px;
+    .footer-inner {
+      max-width: 820px;
       margin: 0 auto;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
     .btn-wa {
       background: var(--wa);
       color: #fff;
-      padding: 12px 20px;
-      font-size: 0.95rem;
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 9px;
+      font-size: 0.92rem;
     }
 
     .btn-wa:hover {
       background: var(--wa-hover);
     }
 
-    .hint {
-      font-size: 0.8rem;
-      color: var(--muted);
+    .second-link {
+      font-size: 0.84rem;
+      color: var(--brand);
+      font-weight: 600;
+      text-decoration: underline;
+      display: none;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="wrap">
-      <div>
-        <h1>Checklist Mantenimiento Condominio / Edificio</h1>
-        <p>Inspección, cotización y envío directo a WhatsApp</p>
+    <div class="header-inner">
+      <div class="brand-box">
+        <!-- Logo Piedra Angular -->
+        <svg class="logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Piedra Angular">
+          <rect x="4" y="4" width="56" height="56" rx="12" fill="#1e3a5f" />
+          <path d="M32 13L50 25V49H38V34H26V49H14V25L32 13Z" fill="#ffffff" />
+          <path d="M26 25L32 20L38 25L32 30L26 25Z" fill="#f59e0b" />
+        </svg>
+        <div>
+          <h1>PIEDRA ANGULAR</h1>
+          <p>Checklist de Mantenimiento Residencial — Envío a WhatsApp</p>
+        </div>
       </div>
-      <button type="button" class="btn btn-secondary" onclick="clearForm()">Limpiar formulario</button>
+      <button type="button" class="btn btn-light" onclick="limpiarTodo()">Limpiar</button>
     </div>
   </header>
 
   <main class="container">
     <section class="card">
-      <h2>Datos Generales</h2>
+      <h2>Datos del Cliente</h2>
       <div class="grid-2">
-        <label class="field">
-          Condominio / Edificio
-          <input type="text" id="condominio" placeholder="Ej. Torres del Parque" />
+        <label>
+          Nombre del cliente
+          <input type="text" id="cliente" placeholder="Ej. Juan Pérez" />
         </label>
-        <label class="field">
-          Administración / Comité
-          <input type="text" id="administracion" placeholder="Ej. Admón. Integral / Comité" />
+        <label>
+          Dirección / Domicilio
+          <input type="text" id="direccion" placeholder="Calle, número, colonia" />
         </label>
-        <label class="field">
-          Torres / Niveles / Unidades
-          <input type="text" id="alcance" placeholder="Ej. Torres A y B, 4 niveles, 24 deptos" />
-        </label>
-        <label class="field">
-          Fecha de inspección
-          <input type="date" id="fecha" />
-        </label>
-        <label class="field">
-          Inspector / Proveedor
-          <input type="text" id="inspector" placeholder="Nombre o empresa" />
-        </label>
-        <label class="field">
-          WhatsApp destino (con código de país, sin +)
-          <input type="text" id="waPhone" value="5219510000000" placeholder="Ej. 5219511234567" />
+        <label>
+          Enviar check a WhatsApp
+          <select id="destino">
+            <option value="529904135397">WhatsApp 1 — 990 413 5397</option>
+            <option value="529511466352">WhatsApp 2 — 951 146 6352</option>
+            <option value="AMBOS">Ambos números (9904135397 y 9511466352)</option>
+          </select>
         </label>
       </div>
     </section>
 
-    <div id="sectionsContainer"></div>
+    <div id="checklistRoot"></div>
 
     <section class="card">
-      <h2>Conceptos para Cotización</h2>
-      <div id="cotizacionRows"></div>
-      <button type="button" class="btn btn-secondary" onclick="addQuoteRow()">+ Agregar concepto</button>
-      <div class="total-box" id="quoteTotal">Total estimado: $0.00</div>
-      <div class="grid-2" style="margin-top: 14px;">
-        <label class="field">
-          Vigencia de cotización (días)
-          <input type="text" id="vigencia" value="15 días naturales" />
-        </label>
-        <label class="field">
-          Materiales y refacciones
-          <input type="text" id="materiales" placeholder="Ej. No incluidos / Parcial" />
-        </label>
-      </div>
-      <label class="field" style="margin-top: 12px;">
-        Observaciones generales / Requisitos de acceso
-        <textarea id="observaciones" rows="2" placeholder="Horario permitido, seguro, bitácoras, etc."></textarea>
+      <h2>Notas Generales</h2>
+      <label>
+        Comentarios adicionales
+        <input type="text" id="notasGenerales" placeholder="Horario disponible, urgencias o detalles extra..." />
       </label>
     </section>
   </main>
 
   <div class="footer-bar">
-    <div class="wrap">
-      <span class="hint">Se abrirá WhatsApp con el mensaje formateado listo para enviar.</span>
-      <button type="button" class="btn btn-wa" onclick="sendToWhatsApp()">Enviar por WhatsApp</button>
+    <div class="footer-inner">
+      <div>
+        <span id="contador" style="font-size: 0.85rem; font-weight: 600;">0 servicios seleccionados</span>
+        <a id="enlaceSegundo" class="second-link" target="_blank" rel="noopener noreferrer">Abrir en el segundo WhatsApp</a>
+      </div>
+      <button type="button" class="btn btn-wa" onclick="enviarWhatsApp()">Enviar Check por WhatsApp</button>
     </div>
   </div>
 
   <script>
-    const SECTIONS = [
+    const CATALOGO = [
       {
-        title: "1. Elevadores y Transporte Vertical",
-        items: [
-          "Cabina y puertas de piso (apertura, sensores, botonera, iluminación)",
-          "Cuarto de máquinas y poleas (ruidos, aceite, frenos, cables/bandas)",
-          "Emergencia y comunicación (alarma, luz emergencia, teléfono, respaldo)",
-          "Póliza y bitácora (póliza vigente, dictámenes, bitácora de fallas)"
+        rubro: "1. Plomería e Hidrosanitarios",
+        servicios: [
+          {
+            nombre: "Reparación de fugas",
+            detalle: "Cambio de empaques, llaves mezcladoras, válvulas y tuberías dañadas (cobre, PVC, CPVC, PPR)."
+          },
+          {
+            nombre: "Desazolve y limpieza de drenajes",
+            detalle: "Destape de tarjas, lavabos, regaderas, coladeras, registros y líneas principales."
+          },
+          {
+            nombre: "Mantenimiento de tinacos y cisternas",
+            detalle: "Lavado, desinfección periódica y ajuste o cambio de flotadores y válvulas check."
+          },
+          {
+            nombre: "Equipos de bombeo",
+            detalle: "Revisión, purga y reparación de bombas de agua, hidroneumáticos y presurizadores."
+          },
+          {
+            nombre: "Calentadores de agua",
+            detalle: "Mantenimiento preventivo (drenado de sarro, revisión de termostato y piloto) en boilers de paso, de depósito y calentadores solares."
+          }
         ]
       },
       {
-        title: "2. Hidrosanitario General y Bombeo Compartido",
-        items: [
-          "Cisternas generales (lavado, desinfección, tapas, flotadores, check)",
-          "Cuarto de bombas e hidroneumático (bombas, alternancia, presión, fugas)",
-          "Red hidráulica y calentadores centrales (tuberías, válvulas, boilers/paneles)",
-          "Drenaje general, cárcamos y trampas (registros, bajadas, bombas, grasas)"
+        rubro: "2. Electricidad e Iluminación",
+        servicios: [
+          {
+            nombre: "Instalaciones y reparaciones",
+            detalle: "Cambio de apagadores, contactos (incluyendo contactos con falla a tierra GFCI), pastillas termomagnéticas y centros de carga."
+          },
+          {
+            nombre: "Detección de fallas",
+            detalle: "Localización y reparación de cortocircuitos, falsos contactos o variaciones de voltaje."
+          },
+          {
+            nombre: "Iluminación",
+            detalle: "Instalación y reemplazo de luminarias LED, arbotantes, lámparas de techo, sensores de movimiento y alumbrado exterior."
+          },
+          {
+            nombre: "Tierra física",
+            detalle: "Revisión y mantenimiento del sistema de puesta a tierra para proteger electrodomésticos."
+          }
         ]
       },
       {
-        title: "3. Electricidad General y Respaldo Energético",
-        items: [
-          "Subestación, tableros generales y medidores (limpieza, temperatura, interruptores)",
-          "Planta de emergencia / UPS (arranque, combustible, batería, transferencia)",
-          "Iluminación de áreas comunes y emergencia (pasillos, escaleras, estacionamiento)",
-          "Tierra física y pararrayos (continuidad, conexiones, revisión periódica)"
+        rubro: "3. Albañilería, Acabados y Estructura",
+        servicios: [
+          {
+            nombre: "Impermeabilización",
+            detalle: "Aplicación y mantenimiento de impermeabilizantes (acrílicos, prefabricados o poliuretano) en azoteas, terrazas y muros colindantes."
+          },
+          {
+            nombre: "Pintura",
+            detalle: "Resane de grietas, aplicación de sellador y pintura vinílica o de esmalte en interiores, fachadas y herrería."
+          },
+          {
+            nombre: "Pisos y recubrimientos",
+            detalle: "Colocación o reemplazo de losetas cerámicas, porcelanato, zoclos y boquilla (lechada)."
+          },
+          {
+            nombre: "Tablaroca y plafones",
+            detalle: "Reparación de humedad en muros falsos, instalación de divisiones ligeras y resane de techos."
+          }
         ]
       },
       {
-        title: "4. Áreas Comunes y Amenidades",
-        items: [
-          "Lobby, pasillos y escaleras (pisos, muros, pintura, barandales, puertas)",
-          "Estacionamiento y accesos vehiculares (topes, señalización, ventilación, portones)",
-          "Roof garden, terraza o salón de usos múltiples (impermeabilización, baños, mobiliario)",
-          "Alberca, gimnasio y áreas verdes (agua/equipos alberca, máquinas, poda y riego)"
+        rubro: "4. Carpintería y Cerrajería",
+        servicios: [
+          {
+            nombre: "Puertas y ventanas",
+            detalle: "Ajuste de bisagras, cepillado de puertas que rozan, cambio de chapas, cerraduras y topes."
+          },
+          {
+            nombre: "Mobiliario fijo",
+            detalle: "Reparación y ajuste de correderas en cajones de cocina integral, clósets y muebles de baño."
+          },
+          {
+            nombre: "Tratamiento de madera",
+            detalle: "Barnizado, laca o aplicación de protectores contra humedad y polilla en puertas exteriores o pérgolas."
+          },
+          {
+            nombre: "Cerrajería",
+            detalle: "Duplicado de llaves, cambio de combinaciones, instalación de cerrojos de alta seguridad y mantenimiento a portones."
+          }
         ]
       },
       {
-        title: "5. Estructura, Fachadas y Envolvente",
-        items: [
-          "Azotea, losas y pretiles (impermeabilización, bajadas pluviales, juntas)",
-          "Fachadas, muros y recubrimientos (grietas, desprendimientos, humedad)",
-          "Cancelería, vidrios y herrería común (ventanas, domos, rejas, anticorrosivo)"
+        rubro: "5. Herrería y Aluminio",
+        servicios: [
+          {
+            nombre: "Cancelería",
+            detalle: "Cambio de carretillas y felpas en ventanas y puertas corredizas de aluminio; sellado con silicón para evitar filtraciones de agua y aire."
+          },
+          {
+            nombre: "Protecciones y portones",
+            detalle: "Soldadura, eliminación de óxido, pintura anticorrosiva y engrasado de bisagras o rieles en rejas y barandales."
+          },
+          {
+            nombre: "Automatización",
+            detalle: "Mantenimiento y ajuste de motores, cremalleras y controles de portones eléctricos."
+          }
         ]
       },
       {
-        title: "6. Seguridad, Protección Civil y Plagas",
-        items: [
-          "Control de accesos y CCTV (cámaras, NVR, respaldo, interfón, cerco)",
-          "Protección civil y contra incendios (extintores, hidrantes, detectores, rutas)",
-          "Fumigación y manejo de residuos (control de plagas, cuarto de basura)"
+        rubro: "6. Climatización y Electrodomésticos (HVAC)",
+        servicios: [
+          {
+            nombre: "Aire acondicionado (Minisplits / Central)",
+            detalle: "Limpieza de filtros, lavado de serpentines (evaporador y condensador), revisión de desagües y recarga de gas refrigerante."
+          },
+          {
+            nombre: "Ventilación",
+            detalle: "Limpieza y reparación de extractores de aire en baños y campanas de cocina."
+          },
+          {
+            nombre: "Línea blanca",
+            detalle: "Revisión de conexiones de gas en estufas y secadoras, limpieza de serpentines de refrigeradores y nivelación de lavadoras."
+          }
         ]
       },
       {
-        title: "7. Administración, Bitácoras y Normatividad",
-        items: [
-          "Bitácora de mantenimiento y reportes (rondines, tickets, evidencias)",
-          "Contratos y pólizas de proveedores (vigencia, seguros, responsabilidad civil)",
-          "Dictámenes y permisos (protección civil, instalaciones, normatividad local)",
-          "Fondo de reserva y programación (urgencias vs. reemplazos mayores)"
+        rubro: "7. Limpieza Profunda y Áreas Exteriores",
+        servicios: [
+          {
+            nombre: "Jardinería",
+            detalle: "Poda de pasto, arbustos y árboles, deshierbe, fertilización y mantenimiento de sistemas de riego."
+          },
+          {
+            nombre: "Albercas y fuentes",
+            detalle: "Balance químico del agua (cloro, pH), aspirado, cepillado y limpieza de filtros y bombas."
+          },
+          {
+            nombre: "Limpieza especializada",
+            detalle: "Lavado a presión (hidrolavadora) de patios, fachadas y cocheras; limpieza de vidrios en altura y canales pluviales."
+          }
+        ]
+      },
+      {
+        rubro: "8. Seguridad y Control de Plagas",
+        servicios: [
+          {
+            nombre: "Fumigación",
+            detalle: "Control preventivo y correctivo contra insectos rastreros, voladores, termitas y roedores."
+          },
+          {
+            nombre: "Sistemas de seguridad",
+            detalle: "Revisión de cámaras de circuito cerrado (CCTV), cercas electrificadas, interfonos, videoporteros y detectores de humo."
+          }
         ]
       }
     ];
 
-    const STATUSES = ["OK", "PRE", "COR", "N/A"];
+    function renderizar() {
+      const root = document.getElementById("checklistRoot");
+      root.innerHTML = "";
 
-    function renderChecklist() {
-      const container = document.getElementById("sectionsContainer");
-      container.innerHTML = "";
-
-      SECTIONS.forEach((sec, sIdx) => {
+      CATALOGO.forEach((grupo) => {
         const card = document.createElement("section");
         card.className = "card";
-        card.innerHTML = `<h2>${sec.title}</h2>`;
+        card.innerHTML = `<h2>${grupo.rubro}</h2>`;
 
-        sec.items.forEach((labelText, iIdx) => {
-          const idBase = `s${sIdx}_i${iIdx}`;
-          const row = document.createElement("div");
-          row.className = "item-row";
-          row.dataset.section = sec.title;
-          row.dataset.label = labelText;
-          row.dataset.status = "";
+        grupo.servicios.forEach((srv) => {
+          const item = document.createElement("div");
+          item.className = "service-item";
+          item.dataset.rubro = grupo.rubro;
+          item.dataset.servicio = srv.nombre;
 
-          const buttonsHtml = STATUSES.map(
-            st => `<button type="button" class="status-btn" data-status="${st}" onclick="setStatus(this, '${st}')">${st}</button>`
-          ).join("");
-
-          row.innerHTML = `
-            <div class="item-top">
-              <div class="item-title">${labelText}</div>
-              <div class="status-group">${buttonsHtml}</div>
+          item.innerHTML = `
+            <div class="service-head">
+              <input type="checkbox" class="srv-check" onchange="actualizarContador()" />
+              <div>
+                <div class="service-title">${srv.nombre}</div>
+                <div class="service-desc">${srv.detalle}</div>
+              </div>
             </div>
-            <input type="text" id="${idBase}_obs" placeholder="Observación o concepto a cotizar..." />
+            <div class="service-note">
+              <input type="text" class="srv-obs" placeholder="Detalle o ubicación (opcional)..." />
+            </div>
           `;
-          card.appendChild(row);
+          card.appendChild(item);
         });
 
-        container.appendChild(card);
+        root.appendChild(card);
       });
     }
 
-    function setStatus(btn, status) {
-      const row = btn.closest(".item-row");
-      const current = row.dataset.status;
-      row.querySelectorAll(".status-btn").forEach(b => b.classList.remove("active"));
+    function actualizarContador() {
+      const total = document.querySelectorAll(".srv-check:checked").length;
+      document.getElementById("contador").textContent =
+        `${total} ${total === 1 ? "servicio seleccionado" : "servicios seleccionados"}`;
+    }
 
-      if (current === status) {
-        row.dataset.status = "";
-      } else {
-        row.dataset.status = status;
-        btn.classList.add("active");
+    function enviarWhatsApp() {
+      const cliente = document.getElementById("cliente").value.trim() || "No especificado";
+      const direccion = document.getElementById("direccion").value.trim() || "No especificada";
+      const notas = document.getElementById("notasGenerales").value.trim();
+      const destino = document.getElementById("destino").value;
+
+      const seleccionados = Array.from(document.querySelectorAll(".service-item"))
+        .filter((el) => el.querySelector(".srv-check").checked);
+
+      if (seleccionados.length === 0) {
+        alert("Marca al menos un servicio en el checklist antes de enviar.");
+        return;
       }
-    }
 
-    function addQuoteRow(concepto = "", tipo = "Preventivo", monto = "") {
-      const wrap = document.getElementById("cotizacionRows");
-      const div = document.createElement("div");
-      div.className = "cotiza-grid";
-      div.innerHTML = `
-        <input type="text" class="q-concepto" placeholder="Concepto o rubro (ej. Lavado de cisterna)" value="${concepto}" />
-        <input type="text" class="q-tipo" placeholder="Prev. / Corr." value="${tipo}" />
-        <input type="number" class="q-monto" placeholder="Subtotal ($)" min="0" step="0.01" value="${monto}" oninput="calcTotal()" />
-        <button type="button" class="btn btn-danger" onclick="this.parentElement.remove(); calcTotal();">X</button>
-      `;
-      wrap.appendChild(div);
-      calcTotal();
-    }
-
-    function calcTotal() {
-      let total = 0;
-      document.querySelectorAll(".q-monto").forEach(inp => {
-        const val = parseFloat(inp.value);
-        if (!isNaN(val)) total += val;
-      });
-      document.getElementById("quoteTotal").textContent =
-        "Total estimado: $" + total.toLocaleString("es-MX", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      return total;
-    }
-
-    function sendToWhatsApp() {
-      const rawPhone = document.getElementById("waPhone").value.replace(/\D/g, "");
-      const condominio = document.getElementById("condominio").value.trim() || "No especificado";
-      const administracion = document.getElementById("administracion").value.trim() || "No especificado";
-      const alcance = document.getElementById("alcance").value.trim() || "No especificado";
-      const fecha = document.getElementById("fecha").value || "Sin fecha";
-      const inspector = document.getElementById("inspector").value.trim() || "No especificado";
-      const vigencia = document.getElementById("vigencia").value.trim();
-      const materiales = document.getElementById("materiales").value.trim();
-      const observaciones = document.getElementById("observaciones").value.trim();
-
-      let lines = [
-        `*CHECKLIST DE MANTENIMIENTO — CONDOMINIO / EDIFICIO*`,
-        `• *Condominio:* ${condominio}`,
-        `• *Administración:* ${administracion}`,
-        `• *Alcance:* ${alcance}`,
-        `• *Fecha:* ${fecha}`,
-        `• *Inspector/Proveedor:* ${inspector}`,
-        ``
+      const lineas = [
+        "*PIEDRA ANGULAR — CHECKLIST DE MANTENIMIENTO*",
+        `*Cliente:* ${cliente}`,
+        `*Dirección:* ${direccion}`,
+        ""
       ];
 
-      let hallazgosCount = 0;
-      document.querySelectorAll(".item-row").forEach(row => {
-        const status = row.dataset.status;
-        const obs = row.querySelector("input").value.trim();
-        const label = row.dataset.label;
-        if (status || obs) {
-          hallazgosCount++;
-          const stText = status ? `[${status}]` : `[SIN ESTATUS]`;
-          lines.push(`${stText} ${label}${obs ? ` — _${obs}_` : ""}`);
+      let rubroActual = "";
+      seleccionados.forEach((el) => {
+        const rubro = el.dataset.rubro;
+        const nombre = el.dataset.servicio;
+        const obs = el.querySelector(".srv-obs").value.trim();
+
+        if (rubro !== rubroActual) {
+          rubroActual = rubro;
+          lineas.push(`*${rubro}*`);
         }
+        lineas.push(`✅ ${nombre}${obs ? ` — _${obs}_` : ""}`);
       });
 
-      if (hallazgosCount === 0) {
-        lines.push(`_(Sin puntos marcados en el checklist)_`);
+      if (notas) {
+        lineas.push("", `*Notas:* ${notas}`);
       }
 
-      const quoteRows = Array.from(document.querySelectorAll(".cotiza-grid"));
-      const validQuotes = quoteRows.filter(r => {
-        const c = r.querySelector(".q-concepto").value.trim();
-        const m = parseFloat(r.querySelector(".q-monto").value);
-        return c || (!isNaN(m) && m > 0);
-      });
+      const texto = encodeURIComponent(lineas.join("\n"));
+      const linkSegundo = document.getElementById("enlaceSegundo");
+      linkSegundo.style.display = "none";
 
-      if (validQuotes.length > 0) {
-        lines.push(``, `*COTIZACIÓN ESTIMADA*`);
-        validQuotes.forEach(r => {
-          const c = r.querySelector(".q-concepto").value.trim() || "Concepto";
-          const t = r.querySelector(".q-tipo").value.trim();
-          const m = parseFloat(r.querySelector(".q-monto").value) || 0;
-          lines.push(`• ${c}${t ? ` (${t})` : ""}: $${m.toLocaleString("es-MX", { minimumFractionDigits: 2 })}`);
-        });
-        const total = calcTotal();
-        lines.push(`*Total estimado: $${total.toLocaleString("es-MX", { minimumFractionDigits: 2 })}*`);
+      if (destino === "AMBOS") {
+        const url1 = `https://wa.me/529904135397?text=${texto}`;
+        const url2 = `https://wa.me/529511466352?text=${texto}`;
+        window.open(url1, "_blank", "noopener,noreferrer");
+        linkSegundo.href = url2;
+        linkSegundo.textContent = "Enviar también al 951 146 6352";
+        linkSegundo.style.display = "inline";
+      } else {
+        window.open(`https://wa.me/${destino}?text=${texto}`, "_blank", "noopener,noreferrer");
       }
-
-      if (vigencia) lines.push(`• *Vigencia:* ${vigencia}`);
-      if (materiales) lines.push(`• *Materiales:* ${materiales}`);
-      if (observaciones) lines.push(`• *Observaciones:* ${observaciones}`);
-
-      const message = encodeURIComponent(lines.join("\n"));
-      const url = rawPhone
-        ? `https://wa.me/${rawPhone}?text=${message}`
-        : `https://wa.me/?text=${message}`;
-
-      window.open(url, "_blank", "noopener,noreferrer");
     }
 
-    function clearForm() {
-      if (!confirm("¿Deseas borrar los datos capturados?")) return;
-      document.querySelectorAll("input[type='text'], input[type='number'], input[type='date'], textarea").forEach(el => {
-        if (el.id !== "waPhone") el.value = "";
-      });
-      document.querySelectorAll(".item-row").forEach(row => {
-        row.dataset.status = "";
-        row.querySelectorAll(".status-btn").forEach(b => b.classList.remove("active"));
-      });
-      document.getElementById("cotizacionRows").innerHTML = "";
-      addQuoteRow();
+    function limpiarTodo() {
+      if (!confirm("¿Limpiar todos los campos y marcas?")) return;
+      document.querySelectorAll("input[type='text']").forEach((i) => (i.value = ""));
+      document.querySelectorAll("input[type='checkbox']").forEach((c) => (c.checked = false));
+      document.getElementById("enlaceSegundo").style.display = "none";
+      actualizarContador();
     }
 
-    document.getElementById("fecha").valueAsDate = new Date();
-    renderChecklist();
-    addQuoteRow();
+    renderizar();
+    actualizarContador();
   </script>
 </body>
 </html>
-const WHATSAPP_PHONE = "5219511466352";
